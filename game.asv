@@ -46,7 +46,7 @@ classdef game
             game.cheating_flag = 0;
             game.figure_ind = 1;
             
-            game.bot = bot();
+            game.bot = bot(game);
             
         end
         
@@ -56,7 +56,7 @@ classdef game
             
             while game.user_grade < game.game_target && game.bot_grade < game.game_target   %main game loop
                 
-                [game.bot, game.bot_strokes(game.turn_number)] = game.bot.bot_play(game);
+                [game.bot, game.bot_strokes(game.turn_number)] = game.bot.bot_play();
                                 
                 if game.cheating_flag
                     fprintf('Bot: %d', game.bot_strokes(game.turn_number));
@@ -109,19 +109,17 @@ classdef game
             
             if game.bot_strokes(game.turn_number) == game.user_strokes(game.turn_number)
                 game.bot_grade = game.bot_grade + 1;
-                game.user_win_loss(game.turn_number) = -1;
-                game.bot_win_loss(game.turn_number) = 1;                
+                game. 
                 fprintf(' B wins ');
             else
                 game.user_grade = game.user_grade+1;
-                game.user_win_loss(game.turn_number) = 1;
-                game.bot_win_loss(game.turn_number) = -1;                           
                 fprintf(' U wins ');
             end
             
             fprintf(',  Grade: %d, %d', game.bot_grade, game.user_grade);
                 
-            game.turn_number = game.turn_number+1;            
+            game.turn_number = game.turn_number+1;
+            
         end
         
         

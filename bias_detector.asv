@@ -1,0 +1,33 @@
+classdef bias_detector
+    %UNTITLED6 Summary of this class goes here
+    %   Detailed explanation goes here
+    
+    properties
+        bias_memory
+        
+        predictions
+    end
+    
+    methods
+        function bias_det = bias_detector(bias_memory)
+            bias_det.bias_memory = bias_memory;
+            bias_det.predictions = [];            
+        end
+        
+        function [bias_det, bot_play] = predict(bias_det, game)
+            if game.turn_number == 1
+                bot_play = 0;
+            else
+                if game.turn_number > bias_det.bias_memory
+                    game.user_strokes = game.user_strokes(game.turn_number - bias_det.bias_memory : end);
+                end
+                bot_play = mean(game.user_strokes);
+            end
+            bias_det.predictions = [bias_det.predictions; bot_play];
+        end
+        
+        
+    end
+    
+end
+

@@ -25,7 +25,7 @@ classdef bot
             end 
             bot.bias_detectors = bias_detectors;
             
-            bot.bias_memories_same_diff = [5,10,15,20];
+            bot.bias_memories_same_diff = [5,10,15,20]-1;
             for i = 1 : length(bot.bias_memories_same_diff)
                 bias_detectors_same_diff(i) = bias_detector(bot.bias_memories_same_diff(i), 1);
             end 
@@ -50,20 +50,20 @@ classdef bot
         
         function [bot, bot_move] = bot_play(bot, game)
             X = []; %the experts decisions (in +-1)
-%             for i = 1 : length(bot.bias_memories)
-%                 [bot.bias_detectors(i), p] = bot.bias_detectors(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
-%                 X = [X, p];
-%             end
-%             for i = 1 : length(bot.bias_memories_same_diff)
-%                 [bot.bias_detectors_same_diff(i), p] = bot.bias_detectors_same_diff(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
-%                 X = [X, p];
-%             end
-%             for i = 1 : length(bot.pattern_length)
-%                 [bot.pattern_detectors(i), p] = bot.pattern_detectors(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
-%                 X = [X, p];
-%             end
-            for i = 1 : length(bot.pattern_length_same_diff)
-                [bot.pattern_detectors_same_diff(i), p] = bot.pattern_detectors_same_diff(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
+            for i = 1 : length(bot.bias_memories)
+                [bot.bias_detectors(i), p] = bot.bias_detectors(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
+                X = [X, p];
+            end
+            for i = 1 : length(bot.bias_memories_same_diff)
+                [bot.bias_detectors_same_diff(i), p] = bot.bias_detectors_same_diff(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
+                X = [X, p];
+            end
+            for i = 1 : length(bot.pattern_length)
+                [bot.bias_detectors(i), p] = bot.bias_detectors(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
+                X = [X, p];
+            end
+            for i = 1 : length(bot.bias_memories_same_diff)
+                [bot.bias_detectors_same_diff(i), p] = bot.bias_detectors_same_diff(i).predict(game.user_strokes, game.user_strokes_same_diff, game.turn_number);
                 X = [X, p];
             end
             
