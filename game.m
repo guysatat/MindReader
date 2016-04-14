@@ -26,7 +26,7 @@ classdef game
     end
     
     methods (Access = public)
-        function game = game(game_target)   %constractor
+        function game = game(game_target, expert_params)   %constractor
             game.user_strokes = [];
             game.user_strokes_same_diff = [];
             game.user_win_loss = [];
@@ -46,7 +46,7 @@ classdef game
             game.cheating_flag = 0;
             game.figure_ind = 1;
             
-            game.bot = bot();
+            game.bot = bot(expert_params);
             
         end
         
