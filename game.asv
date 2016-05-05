@@ -182,7 +182,7 @@ classdef game
             drawnow;
         end
         
-        %handle the user key stroke request
+        %handel the 
         function game = user_play(game)
             if game.random_player == 1
                 game.user_strokes(game.turn_number) = 2*binornd(1, 0.5)-1;
@@ -192,23 +192,24 @@ classdef game
             while 1
                 stroke=getkey();
                 switch stroke
-                    case 29  %right arrow
+                    case 29
                         game.user_strokes(game.turn_number) = 1;
                         break;
-                    case 28  %left arrow
+                    case 28
                         game.user_strokes(game.turn_number) = -1;
                         break;
-                    case 99  %'c' key - cheating
+                    case 99
                         game.cheating_flag = ~game.cheating_flag;
                         if game.cheating_flag
                             draw_bot_status(game);
                         end
-                    case 113 %'q' key - quit
+                    case 113
                         game.stop_game_flag = 1;                    
                         break;
                 end 
             end
-        end         
+        end 
+        
     end
     
 end

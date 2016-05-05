@@ -1,17 +1,18 @@
-classdef reactive_user_detector
-    %UNTITLED6 Summary of this class goes here
-    %   Detailed explanation goes here
+classdef reactive_detector
+    %Reactive user expert
+    %   Shannon's approach if operating on user, Hagelbarger if operating
+    %   on bot
     
     properties
-        memory_length
+        memory_length  %length of reactions memory
         
         predictions     
         
-        state_machine
+        state_machine  %
     end
     
     methods
-        function obj = reactive_user_detector(memory_length)
+        function obj = reactive_detector(memory_length)
             obj.memory_length = memory_length;
             obj.predictions = []; 
             obj.state_machine = zeros(1, (2.^(2*memory_length+1)));

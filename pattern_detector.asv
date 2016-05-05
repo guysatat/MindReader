@@ -7,7 +7,7 @@ classdef pattern_detector
         
         predictions
         
-        same_diff % is this expert working on regular (right/left +-1) input or on the "same-diff" sequence
+        same_diff % is this expert 
     end
     
     methods
@@ -18,7 +18,7 @@ classdef pattern_detector
             obj.same_diff = same_diff;
         end
         
-        %prediction (get the right sequence length and detect the pattern)
+        %prediction
         function [obj, bot_play] = predict(obj, user_strokes, user_strokes_same_diff, turn_number)
             if turn_number <= obj.pattern_length
                 bot_play = 0;
@@ -32,7 +32,6 @@ classdef pattern_detector
             obj.predictions = [obj.predictions; bot_play];
         end
         
-        %actual pattern detector - the longer it lasts the higher the grade
         function bot_play = pat_det(obj, target)
             pat_grade=0;
             pat = target((end-obj.pattern_length+1):end);

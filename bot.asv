@@ -89,7 +89,7 @@ classdef bot
             %aggregate all experts
             if game.turn_number > 1
                 eta = sqrt(log(bot.N)/(2*game.turn_number));
-                [bot, qt] = AggregateExperts(bot, X, game.user_strokes, eta); 
+                [bot, qt] = AggregateExperts(bot, X, game.user_strokes, eta, game); 
             else
                 qt = 0;
             end
@@ -98,10 +98,9 @@ classdef bot
             bot_move = 2*binornd(1, (qt+1)/2)-1; %translate to 0,1  and back to -1,1
         end
         
-        %run the exp. weights algorithm
-        function [bot, qt] = AggregateExperts(bot, X, user_strokes, eta)
+        
+        function [bot, qt] = AggregateExperts(bot, X, user_strokes, eta, game)
             yt = []; %the experts decisions (in +-1)
-            yt_ = []; %used for plotting the bot current status
             for i = 1 : length(bot.bias_detectors)
                 p = exp(-eta * sum(abs(bot.bias_detectors(i).predictions(1:(end-1)) - user_strokes')));
                 yt = [yt, p];
@@ -136,6 +135,7 @@ classdef bot
             yt = yt / sum(yt);
             
             qt = yt * X';
+            %qt = mean(yt);
             
             bot.current_bot_status.experts = cat(3, bot.current_bot_status.experts, yt_/sum(yt_(:)));
             bot.current_bot_status.dec = qt;

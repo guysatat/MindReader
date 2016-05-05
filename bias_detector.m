@@ -1,9 +1,9 @@
 classdef bias_detector
-    %UNTITLED6 Summary of this class goes here
-    %   Detailed explanation goes here
+    %BIAS detector class
+    %   Handles all bias cases
     
     properties
-        bias_memory
+        bias_memory %what memory to use (expert parameter)
         
         predictions
         
@@ -11,12 +11,14 @@ classdef bias_detector
     end
     
     methods
+        %constructor
         function obj = bias_detector(bias_memory, same_diff)
             obj.bias_memory = bias_memory;
             obj.predictions = [];            
             obj.same_diff = same_diff;
         end
         
+        %make prediction
         function [obj, bot_play] = predict(obj, user_strokes, user_strokes_same_diff, turn_number)
             if turn_number == 1
                 bot_play = 0;
