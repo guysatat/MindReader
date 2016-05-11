@@ -61,7 +61,13 @@ classdef game
         
         %main game function - runs the game loop and ends the game
         function game = play_game(game)
-            %fprintf('\n\n\n\nStart!\n');
+            display('Can you beat the machine?');
+            display('Choose your step by clicking the right or left keys.'); 
+            display('Current score is shown in figure 1.');
+            display('You can quit the game at any time by hitting q.');
+            display('You can cheat (and see what the computer is up to) by hitting c.'); 
+            display('Good Luck!');
+   
             game.draw_status();
             
             while game.user_grade < game.game_target && game.bot_grade < game.game_target   %main game loop
@@ -92,8 +98,8 @@ classdef game
             else
                 winner = 'Bot';
             end
-            game.draw_status();
-            game.draw_bot_status();
+            draw_status(game);
+            draw_bot_status(game);
             figure(game.figure_ind); title([winner,' won after ', num2str(game.turn_number), ' turns']);
             figure(game.figure_ind+1); subplot(411); title([winner,' won after ', num2str(game.turn_number), ' turns']);
         end
@@ -135,7 +141,11 @@ classdef game
         
         %draws the game status figure
         function draw_status(game)
+            scrsz = get(0, 'ScreenSize');
+            pos = [scrsz(3)/2 - 500, scrsz(4)-(500+100), 400, 500];
+            
             figure(game.figure_ind); 
+            set(gcf, 'Position', pos);
              
             bar([0,1], [game.user_grade, 0], 'b'); hold on;
             bar([0,1], [0, game.bot_grade], 'r'); hold off;
@@ -148,7 +158,10 @@ classdef game
         
         %draws the bot status figure (only end of game or cheating)
         function draw_bot_status(game)
+            scrsz = get(0, 'ScreenSize');
+            pos = [scrsz(3)/2, 50, scrsz(3)/2, (scrsz(4)-50)*0.9];
             figure(game.figure_ind+1); 
+            set(gcf, 'Position', pos);
             
             subplot(411);
             plot(1:size(game.grades_vs_turns,2), game.grades_vs_turns(1, :), ...
@@ -172,13 +185,19 @@ classdef game
             xlim([1, 2*game.game_target-1]);
             xlabel('Turn #');
             ylabel('Weight');
-            legend(game.bot.current_bot_status.experts_labels);            
+            legend(game.bot.current_bot_status.experts_labels,'Orientation','horizontal','location','northoutside');            
             
             subplot(414);
             bar(game.bot.current_bot_status.experts(:,:,end));
             ax = gca;
             ax.XTickLabel = game.bot.current_bot_status.experts_labels;
-            title(['Last bot bias: ', num2str(game.bot.current_bot_status.dec)]);       
+            
+            if game.bot_strokes(end) == 1
+                bot_dec_s = 'right';
+            else
+                bot_dec_s = 'left';
+            end
+            title(['Current bot bias: ', num2str(game.bot.current_bot_status.dec),' Bot prediction: ', bot_dec_s]);       
             drawnow;
         end
         

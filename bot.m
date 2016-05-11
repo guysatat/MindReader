@@ -88,7 +88,7 @@ classdef bot
             
             %aggregate all experts
             if game.turn_number > 1
-                eta = sqrt(log(bot.N)/(2*game.turn_number));
+                eta = sqrt(log(bot.N)/(2*game.game_target));
                 [bot, qt] = AggregateExperts(bot, X, game.user_strokes, eta); 
             else
                 qt = 0;
