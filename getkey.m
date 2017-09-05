@@ -54,7 +54,7 @@ function [ch, tim] = getkey(N,nonascii)
 t00 = tic ; % start time of this function
 
 % check the input arguments
-error(nargchk(0,2,nargin))
+narginchk(0,2)
 switch nargin
     case 0
         nonascii = '' ;

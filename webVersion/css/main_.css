@@ -1,0 +1,30 @@
+.button {
+    background-color: #e7e7e7; /* Green */
+    border: none;
+    color: black;
+    padding: 10px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+		border-radius: 12px;
+		font-weight: bold;
+}
+
+
+ul.btns {
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
+			text-align:center;
+			padding-top:15px;
+		}
+
+			ul.btns li {
+				display: inline-block;
+				padding: 0 1em 0 0;
+				vertical-align: middle;
+			}
+			ul.btns li:last-child {
+				padding-right: 0;
+			}
