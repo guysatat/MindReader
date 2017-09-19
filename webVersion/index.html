@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
     <meta charset="utf-8" />
     <title>Mind Reader</title>
     <meta charset="utf-8" />
@@ -15,6 +16,18 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100|Roboto" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106666434-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106666434-1');
+</script>
+	
 </head>
 <body>
 
@@ -52,13 +65,17 @@
                   <li>Each turn, you choose either left or right (use keyboard or the buttons below).</li>
                   <li>The computer tries to predict your choice.</li>
                   <li>If the computer successfully predicts your choice it wins the round, otherwise you win the round.</li>
-                  <li>The first to win 50 rounds wins the game.</li>
-                  <li>You have a 3 seconds for each turn, and the extra time is carried to the next round up to 10 seconds. If you don't play in time you loose a the round.</li>
+                  <li>The first to win 100 rounds wins the game.</li>
+                  <li>You have 3 seconds for each turn, and the extra time is carried to the next round up to 10 seconds. If you don't make your move in time you lose the round.</li>
               </ul>
             </p>
       </section>
 
-      <canvas id="myCanvas" width="480" height="320"></canvas>
+     <!---<canvas id="myCanvas" width="480" height="320"></canvas>--->
+     <div style="text-align:center;">
+    <svg id="game1" width="320" height="320"></svg>
+  </div>
+
       <ul class="actions" style="text-align: center; padding-top:20px; margin:0 0 1em 0">
           <li> <a id="leftKey" class="button" href="javascript:void(0);" onclick="userAction(-1);" >&lt</a></li>
           <li> <a id="rightKey" class="button" href="javascript:void(0);" onclick="userAction(1);" >&gt</a></li>
@@ -69,8 +86,8 @@
 
       <section>
         <p>
-          This game is motivated by Shannon’s "A Mind-reading(?) Machine"(1953) and Hagelbarger's "SEER, A SEquence Extrapolating Robot"(1956). In fact some of the strategies that are used by the algorithm here are directly derived from Shannon's and Hagelbarger's work.<br />
-          The algorithm used here is based on the Expert Setting. Essentially that means that there are multiple strategies (or predictors) that predict the next user move. And a meta algorithm aggregates all the strategies into a single decision.<br />
+          This game is motivated by Shannon’s "A Mind-reading(?) Machine"(1953) and Hagelbarger's "SEER, A SEquence Extrapolating Robot"(1956). In fact, some of the strategies that are used by the algorithm here are directly derived from Shannon's and Hagelbarger's work.<br />
+          The algorithm used here is based on the Expert Setting: multiple strategies (or predictors) predict the user's next move, and a meta algorithm aggregates all the strategies into a single decision.<br />
           My class project report can be found <a href="GuySatat_MindReader_FinalProject.pdf">here</a>.
         </p>
   </section>
@@ -101,8 +118,10 @@
 <script src="assets/js/util.js"></script>
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 
-<script src="MindReader.js"></script>
+<script src="MindReaderAlg.js"></script>
 <script src="MindReaderGUI.js"></script>
+<script src="MindReaderGame.js"></script>
 </body>
 </html>

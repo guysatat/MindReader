@@ -2646,10 +2646,10 @@
 		}
 
 			ul.actions li {
-				padding: 1em 0 0 0;
-				display: block;
+				padding: 0 0 0 0;
+				display: inline-block;
 				text-align: center;
-				width: 100%;
+				width: 49%;
 			}
 
 				ul.actions li:first-child {
