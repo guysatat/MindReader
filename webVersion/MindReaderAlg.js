@@ -61,9 +61,8 @@ class Bot {
 
       botPredictionProb = this.aggregateExperts();
 
-      var sample = Math.round(Math.random())*2-1;  //FIX ME TO ADD RANDOMNESS HERE
-
-      if (botPredictionProb<0) {
+      var sample = Math.random()*2-1;  
+      if (botPredictionProb<sample) {
           botPrediction = -1;
       }
       else {
