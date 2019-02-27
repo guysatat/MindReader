@@ -79,7 +79,7 @@ function scoreUpdate() {
 }
 
 function restartGame() {
-  numberOfGameTurns = 200;
+  numberOfGameTurns = 50;
   maxTime = 10;
   timePerTurn = 3;
   userScore = 0;
