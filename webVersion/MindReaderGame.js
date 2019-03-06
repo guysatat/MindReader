@@ -1,3 +1,6 @@
+// This file controls the game progress. It creates a bot instance, and maintains the interaction with the user.
+// All game paramteres (like number of turns) are at the bottom of this file.
+
 //game parameters
 var numberOfGameTurns, maxTime, timePerTurn;
 
@@ -79,7 +82,7 @@ function scoreUpdate() {
 }
 
 function restartGame() {
-  numberOfGameTurns = 50;
+  numberOfGameTurns = 50; // Total game turns (the goal is to get to half of that, must be even number).
   maxTime = 10;
   timePerTurn = 3;
   userScore = 0;
