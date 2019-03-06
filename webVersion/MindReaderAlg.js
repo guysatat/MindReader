@@ -1,3 +1,5 @@
+// This file maintains the bot status and creates predictions.
+
 const USERWIN = -1;
 const BOTWIN = 1;
 const REGULAR_DATA_SERIES = 1;
