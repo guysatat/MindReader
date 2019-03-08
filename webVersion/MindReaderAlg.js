@@ -1,3 +1,5 @@
+// This file maintains the bot status and creates predictions.
+
 const USERWIN = -1;
 const BOTWIN = 1;
 const REGULAR_DATA_SERIES = 1;
@@ -61,9 +63,8 @@ class Bot {
 
       botPredictionProb = this.aggregateExperts();
 
-      var sample = Math.round(Math.random())*2-1;  //FIX ME TO ADD RANDOMNESS HERE
-
-      if (botPredictionProb<0) {
+      var sample = Math.random()*2-1;  
+      if (botPredictionProb<sample) {
           botPrediction = -1;
       }
       else {

@@ -1,3 +1,6 @@
+// This file maintains the basic graphics of the game
+
+
 //graphics variables
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
